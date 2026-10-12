@@ -1,0 +1,55 @@
+AdHub - prototipo local de intermediacao continua do YouTube
+
+Executar nesta pasta (Node.js 22 ou superior; testado em Node 25 no Windows):
+  npm ci --ignore-scripts
+  npm start
+Abrir no MESMO computador: http://127.0.0.1:4219
+Para encerrar: Ctrl+C no processo npm start.
+Este endereco local NAO funciona na smart TV ou no celular.
+
+IMPLEMENTADO
+- Interface original do YouTube entregue por Scramjet 1.1.0.
+- Intermediacao de rede Wisp; TLS, JavaScript, DOM e video executados no cliente.
+- Nenhum navegador, VM, decodificador de video ou encoder no servidor.
+- Pesquisa e navegacao reais; troca de video faz recarga automatica do documento
+  para contornar um travamento observado na navegacao SPA do Scramjet 1.1.0.
+- Faixas laterais e inferior ajustaveis, externas ao conteudo original.
+- Medicoes acumuladas de bytes do WebSocket, CPU e memoria do servidor.
+
+VALIDACAO EM 2026-10-12
+Edge no Windows: pagina inicial, pesquisa futebol, selecao de MVe5LL8bRhU,
+reproducao, selecao de glbLUBtrL8E e reproducao do segundo video.
+Anuncios nativos do YouTube permaneceram e o botao nativo Pular foi utilizado.
+No segundo video, qualidade 1080p escolhida na interface original; elemento
+video confirmou 1920x1080, paused=false e currentTime progredindo.
+Registro da amostra em validation.json. Nao comprova 60 fps ou estabilidade longa.
+4 testes de limites de rede passaram; npm audit sem vulnerabilidades reportadas.
+
+RESTRICOES DO PROTOTIPO
+- Escuta somente em 127.0.0.1; host/origin exatos no handshake WebSocket.
+- So hosts de conteudo e dependencias conhecidas, TCP 443, sem IPs privados,
+  IPs literais, UDP ou accounts.google.com. Nao tente login neste prototipo.
+- Service Worker, WebAssembly e SharedWorker exigidos. TVs ainda nao testadas.
+- Transporte de video passa pelo servidor; renderizacao local nao elimina banda.
+- GitHub Pages nao executa o servidor Node/WebSocket.
+- Publicacao precisa de hospedagem persistente HTTPS/WSS, identidade por TV,
+  limites por parceiro, testes de isolamento e politica operacional definida.
+- Nao ha venda, campanhas reais, aprovacao, pagamento, split ou reembolso aqui.
+- Permissoes de uso comercial e compatibilidade precisam de validacao separada.
+
+DEPENDENCIAS E ALTERACOES
+Scramjet: https://github.com/MercuryWorkshop/scramjet
+Transporte: https://github.com/MercuryWorkshop/libcurl-transport
+Wisp: https://github.com/MercuryWorkshop/wisp-js
+Versoes fixas em package-lock.json. Licenca deste prototipo: AGPL-3.0-or-later.
+Wisp utiliza LGPL-3.0-or-later; fontes/licenca originais acompanham seu pacote npm.
+patch-wisp.mjs corrige iteracao do limite por host e classificacao de IPv6 privado
+e IPv4 mapeado no wisp-js 0.5.0. Aplicado por prestart/pretest, sem desativar filtros.
+
+REQUISITO COMERCIAL AINDA PENDENTE
+Parceiro cadastra estabelecimento, TV, foto e precos por espaco; aprovacao AdHub
+libera link da TV. Anunciante escolhe estabelecimento, espaco, periodo e arte;
+paga; parceiro aprova ou recusa. Aprovacao agenda exibicao; recusa gera reembolso
+confirmado no provedor. AdHub recebe 15%, parceiro 85%, com regras de taxas a definir.
+Reservas concorrentes, falhas de exibicao, idempotencia de webhooks e conciliacao
+financeira devem ser validadas antes de aceitar dinheiro real.

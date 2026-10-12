@@ -1,0 +1,21 @@
+{
+  "name": "adhub-relay-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "prestart": "node patch-wisp.mjs",
+    "pretest": "node patch-wisp.mjs"
+  },
+  "dependencies": {
+    "@fastify/static": "10.1.6",
+    "@mercuryworkshop/bare-mux": "2.1.9",
+    "@mercuryworkshop/libcurl-transport": "1.5.2",
+    "@mercuryworkshop/scramjet": "1.1.0",
+    "@mercuryworkshop/wisp-js": "0.5.0",
+    "fastify": "5.12.5"
+  },
+  "license": "AGPL-3.0-or-later"
+}

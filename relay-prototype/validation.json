@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12T22:31:48.831Z",
+  "browser": "Microsoft Edge on Windows desktop",
+  "home": true,
+  "query": "futebol",
+  "search": true,
+  "firstVideo": "MVe5LL8bRhU",
+  "firstVideoPlaying": true,
+  "secondVideo": "glbLUBtrL8E",
+  "secondVideoPlaying": true,
+  "nativeYouTubeAdsObserved": true,
+  "resolution": {
+    "width": 1920,
+    "height": 1080,
+    "paused": false,
+    "time": 7.608147
+  },
+  "fps60Verified": false,
+  "physicalTvTested": false,
+  "publicDeployment": false,
+  "metrics": {
+    "up": 863210,
+    "down": 57953233,
+    "connections": 3,
+    "active": 1,
+    "seconds": 335,
+    "rss": 87293952,
+    "cpu": {
+      "user": 1203000,
+      "system": 890000
+    },
+    "unit": "bytes on relay WebSocket including protocol overhead; excludes static assets"
+  },
+  "limitations": [
+    "SPA watch transitions require automatic document reload",
+    "Accounts deliberately unavailable",
+    "Manual play may be needed; sustained playback not measured",
+    "Traffic sample includes navigation, buffering and YouTube advertisements, not steady-state bitrate",
+    "TV compatibility, campaign delivery and payments not connected"
+  ]
+}
