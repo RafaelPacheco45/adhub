@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const endpoint='https://xvutqwybxslmvnrreedx.supabase.co/functions/v1/youtube-remote',origin=process.env.TEST_ORIGIN||'https://rafaelpacheco45.github.io';
+const endpoint='https://xvutqwybxslmvnrreedx.supabase.co/functions/v1/youtube-remote-pages',origin=process.env.TEST_ORIGIN||'https://rafaelpacheco45.github.io';
 async function call(op,token,extra={},expected=200){const r=await fetch(endpoint,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({op,...extra})});assert.equal(r.status,expected,op+' HTTP status');return r.json();}
 let a,b;
 try{

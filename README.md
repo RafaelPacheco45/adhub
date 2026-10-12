@@ -1,6 +1,6 @@
 # AdHub TV
 
-Site: https://rafaelpacheco45.github.io/adhub/
+Site: https://achadoagora.blog.br/adhub/
 
 Abra na TV, inicie a tela e escaneie o QR no celular. Copie o link de um vídeo do YouTube e envie pelo controle. Os anúncios laterais são demonstrações fictícias.
 
