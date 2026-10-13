@@ -17,6 +17,9 @@ export async function installFlow(tv,{tvPort=4219,partnerPort=4218}={}){
  partner.post('/api/orders/:id/decision',async req=>store.decide(req.params.id,req.body||{}));
  partner.post('/api/orders/:id/revoke',async req=>store.revoke(req.params.id));
  partner.get('/api/orders/:id/art',async(req,reply)=>{const art=store.preview(req.params.id);return reply.type(art.mime).header('X-Content-Type-Options','nosniff').send(Buffer.from(art.bytes));});
+ partner.get('/',async(req,reply)=>reply.redirect('/site/'));
+ partner.get('/parceiro.html',async(req,reply)=>reply.type('text/html').send(readFileSync(new URL('./partner/index.html',import.meta.url))));
+ await partner.register(staticFiles,{root:fileURLToPath(new URL('./site/',import.meta.url)),prefix:'/site/',decorateReply:false,list:false});
  await partner.register(staticFiles,{root:fileURLToPath(new URL('./partner/',import.meta.url)),list:false});
  const token=req=>req.headers.authorization?.replace(/^Bearer /,'');
  tv.get('/api/tv/manifest',async req=>store.manifest(token(req)));
@@ -24,3 +27,4 @@ export async function installFlow(tv,{tvPort=4219,partnerPort=4218}={}){
  tv.addHook('onClose',async()=>{await partner.close();store.close();});
  await partner.listen({host:'127.0.0.1',port:partnerPort});console.log(`Painel local do parceiro: ${origin}`);return {store,partner};
 }
+

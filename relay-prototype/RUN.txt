@@ -83,3 +83,11 @@ tela limpa 200, sem cabecalho/menu/botoes; fullscreen do iframe bloqueado.
 Edge: pedido Cafe Aurora com duas laterais, aprovacao, link, pesquisa futebol,
 video MVe5LL8bRhU reproduzindo em 0:07 com a arte nas duas laterais.
 Nao valida smart TV, 60 fps, pagamento real ou hospedagem publica.
+
+SITE COMPLETO (2026-10-13)
+A entrada http://127.0.0.1:4218/ abre /site/ com a interface original.
+Painel de aprovacao: /parceiro.html. Pedido de TV: /pedido.html.
+Navegacao entre site, catalogo e painel validada no Edge.
+O catalogo e as contas originais nao foram integrados ao banco local de pedidos.
+Os pedidos de TV continuam simulados pelo formulario especifico.
+
