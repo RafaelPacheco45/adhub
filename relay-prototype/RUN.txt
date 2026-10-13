@@ -3,7 +3,8 @@ AdHub - prototipo local de intermediacao continua do YouTube
 Executar nesta pasta (Node.js 22 ou superior; testado em Node 25 no Windows):
   npm ci --ignore-scripts
   npm start
-Abrir no MESMO computador: http://127.0.0.1:4219
+Painel do parceiro no MESMO computador: http://127.0.0.1:4218/
+Laboratorio de rede anterior: http://127.0.0.1:4219/
 Para encerrar: Ctrl+C no processo npm start.
 Este endereco local NAO funciona na smart TV ou no celular.
 
@@ -34,7 +35,8 @@ RESTRICOES DO PROTOTIPO
 - GitHub Pages nao executa o servidor Node/WebSocket.
 - Publicacao precisa de hospedagem persistente HTTPS/WSS, identidade por TV,
   limites por parceiro, testes de isolamento e politica operacional definida.
-- Nao ha venda, campanhas reais, aprovacao, pagamento, split ou reembolso aqui.
+- Aprovacao e campanhas locais implementadas; pedidos e pagamentos simulados.
+- Sem venda real, autenticacao de contas de producao, split ou reembolso financeiro.
 - Permissoes de uso comercial e compatibilidade precisam de validacao separada.
 
 DEPENDENCIAS E ALTERACOES
@@ -53,3 +55,31 @@ paga; parceiro aprova ou recusa. Aprovacao agenda exibicao; recusa gera reembols
 confirmado no provedor. AdHub recebe 15%, parceiro 85%, com regras de taxas a definir.
 Reservas concorrentes, falhas de exibicao, idempotencia de webhooks e conciliacao
 financeira devem ser validadas antes de aceitar dinheiro real.
+
+FLUXO DE APROVACAO E LINK DA TV (2026-10-12)
+1. Abra http://127.0.0.1:4218/ e escolha Simular novo pedido.
+2. Escolha arte, formato e periodo e envie para aprovacao.
+3. No painel, confira os dados, marque a concordancia e aprove.
+4. O link exclusivo aparece somente depois da aprovacao. Abra-o neste PC.
+5. A tela inicia o YouTube real e mostra apenas as artes nos espacos aprovados.
+   Nao ha cabecalho, botoes, menu ou metricas da AdHub na tela da TV.
+
+Formatos: lateral direita, duas laterais, inferior, direita+inferior e quadrado.
+A composicao vem do pedido aprovado; nao pode ser alterada pela query da URL.
+O prototipo repete a mesma arte quando o formato possui dois espacos.
+A arte e o periodo ficam preservados no pedido. Antes/depois do periodo, os
+anuncios somem e o YouTube ocupa o espaco. Encerrar link revoga seu acesso.
+Pedidos recusados nao geram link; nenhum dinheiro e movimentado nesta versao.
+
+Dados e chave de links persistem em .data/ (privado, ignorado no Git).
+O painel local fica separado da origem da TV e rejeita mutacoes dessa origem.
+Ainda nao e um painel multiusuario autenticado nem integrado ao checkout real.
+
+VALIDACAO DO FLUXO
+9 testes passaram: limites de rede, estados, formatos, arte, periodo,
+idempotencia, conflitos de reserva, revogacao e persistencia SQLite.
+HTTP: mutacao do painel pela origem da TV 403; manifesto sem token 401;
+tela limpa 200, sem cabecalho/menu/botoes; fullscreen do iframe bloqueado.
+Edge: pedido Cafe Aurora com duas laterais, aprovacao, link, pesquisa futebol,
+video MVe5LL8bRhU reproduzindo em 0:07 com a arte nas duas laterais.
+Nao valida smart TV, 60 fps, pagamento real ou hospedagem publica.

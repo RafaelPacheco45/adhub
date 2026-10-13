@@ -1,0 +1,32 @@
+{
+  "browser": {
+    "browser": "Edge on Windows",
+    "observedPlaybackSeconds": 7,
+    "videoId": "MVe5LL8bRhU",
+    "flow": [
+      "create simulated order",
+      "review and approve",
+      "unique link displayed",
+      "open link",
+      "real YouTube search",
+      "real video playback with approved artwork"
+    ],
+    "layout": "two_sides"
+  },
+  "httpChecks": [
+    "manager rejects TV-origin mutations:403",
+    "manifest without capability:401",
+    "TV renderer:200; no AdHub header/menu/buttons",
+    "iframe fullscreen and picture-in-picture disabled"
+  ],
+  "automatedTestsPassed": 9,
+  "limitations": [
+    "localhost only",
+    "payments simulated",
+    "no production partner authentication",
+    "smart TV and 60fps unverified",
+    "public hosting pending"
+  ],
+  "date": "2026-10-12",
+  "scope": "Local partner approval to clean TV link"
+}
